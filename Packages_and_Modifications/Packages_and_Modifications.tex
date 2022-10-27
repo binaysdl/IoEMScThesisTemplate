@@ -1,0 +1,195 @@
+%=================
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEIR IMPLICATIONS
+%----------------------------------------------------------------------------------------
+        
+    \usepackage[utf8]{inputenc} % Required for inputting international characters
+    \usepackage[T1]{fontenc} % Output font encoding for international characters
+    \usepackage{mathpazo} % Use the Palatino font by default
+    \usepackage{mathptmx} % for times new roman font
+    \usepackage{multirow} % for table row
+    \usepackage{multicol} % multi-column paragraphs
+    \usepackage{comment} % to comment the block
+    \usepackage{graphicx} % for tables
+    \usepackage{pdfpages} % To add appendix as pdf
+    \usepackage{wrapfig} % to wrap figure in the paragraph
+    \usepackage[inline]{enumitem} % for romanized and oher numbering in item
+    \usepackage{mfirstuc}   % to make first letter upercase
+    
+    \usepackage[normalem]{ulem}
+
+    
+    \usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+    
+    % Following set of commands are used for the Algorithms
+    \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+    \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{gray}{#1}}
+    \SetCommentSty{mycommfont}
+    \SetKwInput{KwInput}{Input}                % Set the Input
+    \SetKwInput{KwOutput}{Output}              % set the Output
+    \SetKwInput{KwData}{Data}                  % define dataset
+    
+    
+    
+    
+    \usepackage{titlesec} %for subsubsub sections
+
+    
+    \usepackage{adjustbox} % for table position rotation
+    \usepackage{rotating} % for table position rotating
+    \usepackage{float} %figure/table exact positioning
+    \usepackage[T1]{fontenc}\usepackage{lmodern} % for default cmr12 font best font for thesis
+    
+    \usepackage{notoccite} % for not letting the citation count to start from table of contents citations
+    % If you have \cite commands in \section-like commands, or in \caption, the
+    % citation will also appear in the table of contents, or list of whatever.
+    % If you are also using an unsrt-like bibliography style, these citations
+    % will come at the very start of the bibliography, which is confusing. This
+    % package suppresses the effect.
+    
+    \usepackage[all]{nowidow} % Used to avoid the widow word or orphan (maybe) in any page.
+    
+    \usepackage{fmtcount} % Used to count the chapter numbers as chapters headings are ONE and sections are 1.1 and so on
+    
+    \usepackage[nodayofweek]{datetime} % to enter month and year automatically in the title page
+
+    \usepackage{listings} % For code snippets
+    \usepackage{adjustbox} % adjust the code snippets within the textwidth
+    
+    \usepackage{tikz} % To insert signature of the supervisors, if outside the country
+  
+    \usepackage{pdfpages} % to insert the pdfs of plagiarism check
+  
+
+    
+%----------------------------------------------------------------------------------------
+%	EXTENDED MODIFICATIONS IN PACKAGES
+%----------------------------------------------------------------------------------------
+    % FOR PACKAGE GEOMETRY
+            \geometry{
+            paper=a4paper % Change to letterpaper for US letter
+            ,inner=2.5cm % Inner margin
+            ,outer=2.5cm % Outer margin
+            ,bindingoffset=10mm % Binding offset
+            % ,showframe=True
+            ,top=2.5cm % Top margin
+            ,bottom=2.5cm % Bottom margin
+            ,headheight=18pt
+            }
+
+
+
+    % FOR PACKAGE ULEM
+            \useunder{\uline}{\ul}{}
+            
+    % FOR PACKAGE TITLESEC
+        \titleformat{\chapter}[hang]
+        {\normalfont\large\bfseries\centering}
+        {\MakeUppercase{\chaptertitlename}\ \thechapter:}
+        {0.05em}
+        {\MakeUppercase}
+        
+        \titlespacing*{\chapter}{0pt}{-3.25em}{12pt}
+        % \titlespacing{\chapter}{1cm}{2cm}{3cm} adjust 1 to adjust the left margin, adjust 2 to adjust the vertical space before the title, adjust 3 to adjust the separation between title and non-sectioning text.
+        
+        % this always creates troubles, work around with the showframe=True to work around with this
+        
+        \titleformat*{\section}{\bfseries\fontsize{13}{15}\selectfont}
+        \titleformat*{\subsection}{\bfseries\fontsize{12}{14}\selectfont}
+        
+    % FOR DATETIME PACKAGE
+        % datetime package is too rigid with uppercase, hence the extended workout
+
+        \newdateformat{mydate}{\monthname[\THEMONTH], \THEYEAR}
+        \makeatletter
+        \renewcommand*{\monthnameenglish}[1][\month]{%
+          \@orgargctr=#1\relax
+          \ifcase\@orgargctr
+          \PackageError{datetime}{Invalid Month number \the\@orgargctr}{Month
+          numbers should go from 1 (JANUARY) to 12 (DECEMBER)}%
+          \or JANUARY%
+          \or FEBRUARY%
+          \or MARCH%
+          \or APRIL%
+          \or MAY%
+          \or JUNE%
+          \or JULY%
+          \or AUGUST%
+          \or SEPTEMBER%
+          \or OCTOBER%
+          \or NOVEMBER%
+          \or DECEMBER%
+          \else \PackageError{datetime}{Invalid Month number \the\@orgargctr}{%
+          Month numbers should go from 1 (january) to 12 (december)}%
+          \fi
+        }
+        \makeatother
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	RENEWED COMMANDS - THIS IS SPECIFIC ONLY TO INSTITUTE OF ENGINEERING THESIS
+%----------------------------------------------------------------------------------------
+
+    
+    \renewcommand{\thechapter}{\NUMBERstring{chapter}} % for Chapter: CHAPTER ONE
+    \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} % for section: 1.1
+    \renewcommand{\thesubsection}{\arabic{chapter}.\arabic{section}.\arabic{subsection}} % for subsection: 1.1
+    
+    \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}} % for figures
+    \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}} % for tables
+    \renewcommand{\thealgocf}{\arabic{chapter}.\arabic{algocf}} % for algorithms
+    
+    
+    % ADD SPACE AFTER CHAPTER ONE IN TABLE OF CONTENTS: THIS WORKS FOR UPTO FIVE LETTERS (CHAPTER THREE, SEVEN)
+    \renewcommand{\cftchappresnum}{CHAPTER }
+    \newlength\mylength
+    \renewcommand\cftchapaftersnum{:}
+    \settowidth\mylength{\cftchappresnum\cftchapaftersnum\quad\quad 10pt} % Increase the point value if you need to add CHAPTER ELEVEN
+    \addtolength\cftchapnumwidth{\mylength}
+    
+    % for appendix
+    \let\oldappendix\appendix
+    \renewcommand{\appendix}{%
+      \oldappendix
+      \addtocontents{toc} % Update \cftchappresnum within the .toc
+        {\protect\renewcommand{\protect\cftchappresnum}{Appendix}}
+    }
+    
+    \hyphenation{op-tical net-works semi-conduc-tor} %The \hyphenation command declares allowed hyphenation points, where words is a list of words, separated by spaces, in which each hyphenation point is indicated by a - character
+
+    
+    
+    % To make uppercases in required location
+    \renewcommand{\cfttoctitlefont}{\hspace*{\fill}\large\bfseries\MakeUppercase}
+    \renewcommand{\cftaftertoctitle}{\hspace*{\fill}}
+    \renewcommand{\cftlottitlefont}{\hspace*{\fill}\large\bfseries\MakeUppercase}
+    \renewcommand{\cftafterlottitle}{\hspace*{\fill}}
+    \renewcommand{\cftloftitlefont}{\hspace*{\fill}\large\bfseries\MakeUppercase}
+    \renewcommand{\cftafterloftitle}{\hspace*{\fill}}
+    
+    \addtolength{\cftbeforetoctitleskip}{-5.75em}
+        \addtolength{\cftbeforelottitleskip}{-5.675em}
+            \addtolength{\cftbeforeloftitleskip}{-5.75em}
+    
+
+    \AtBeginDocument{\renewcommand{\contentsname}{Table of Contents}} % this one 
+ % because of use of babel or some library somewhere.
+
+
+    % Numbering System for the equations
+        %%gmedina solution
+        \newcommand{\listequationsname}{\hspace*{\fill}\large LIST OF EQUATIONS\hspace*{\fill}}
+        \newlistof{equations}{equ}{\listequationsname}
+        \newcommand{\equations}[1]{%
+        \addcontentsline{equ}{equations}{\protect\numberline{\theequation}#1}\par}
+        \setlength{\cftequationsnumwidth}{2.5em}% Width of equation number in List of Equations
+        \numberwithin{equation}{chapter} % This line resets equation numbering when starting a new section.
+        \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}} % This line ads "Eq." in front of your equation numbering.
+            \addtolength{\cftbeforeequtitleskip}{-5.75em}
+        % -5.75em
+        % \setlength{\cftbeforeequtitleskip}{2.5cm}
+                % \setlength{\cftbeforeequtitleskip}{-40pt}
+        % \setlength{\cftafterequtitleskip}{0pt}
+

@@ -1,0 +1,148 @@
+\documentclass[nolistspacing
+                ,chapterinoneline
+                ,toctotoc
+                ,liststotoc
+                ,consistentlayout
+                ,english
+                ,onehalfspacing
+                ,12pt
+                ,parskip
+                ,oneside
+                ]{IoEMScThesis}
+
+% Recommended options without headers
+% \documentclass[nolistspacing, chapterinoneline,toctotoc, parskip, consistentlayout,english,onehalfspacing,12pt,oneside]{MastersDoctoralThesis}
+
+% Recommended options with headers
+% \documentclass[nolistspacing, chapterinoneline,toctotoc, parskip, consistentlayout,english,onehalfspacing,12pt,oneside, headsepline]{MastersDoctoralThesis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Options declared in the class file
+% nohyperref % Uncomment to not load the hyperref package
+% nolistspacing % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
+% liststotoc % Uncomment to add the list of figures/tables/etc to the table of contents
+% chapterinoneline % Uncomment to place the chapter title next to the number on one line
+% toctotoc % Uncomment to add the main table of contents to the table of contents
+% parskip % Uncomment to add space between paragraphs
+% headsepline % Uncomment to get a line under the header
+% consistentlayout % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Options from latex itself
+
+% 12pt, % The default document font size, options: 10pt, 11pt, 12pt
+% oneside, % Two side (alternating margins) for binding by default, uncomment to switch to one side
+% english, % ngerman for German
+% %singlespacing, % Single line spacing, alternatives: 
+% onehalfspacing %doublespacing
+% %draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
+
+
+
+%----------------------------------------------------------------------------------------
+%	IMPORT ADDITIONAL PACKAGES
+%----------------------------------------------------------------------------------------
+    \input{Packages_and_Modifications/Packages_and_Modifications}
+
+%----------------------------------------------------------------------------------------
+%	IMPORT THESIS INFORMATION
+%----------------------------------------------------------------------------------------
+    \input{Thesis_Information/Thesis_Information}
+
+
+%----------------------------------------------------------------------------------------
+%	INTITATE THE DOCUMENT
+%----------------------------------------------------------------------------------------
+    \AtBeginDocument{
+    \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
+    \hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+    \hypersetup{pdfkeywords=\keywordnames} % Set the PDF's keywords to your keywords
+    }
+
+
+    \begin{document}
+    
+
+        
+        %----------------------------------------------------------------------------------------
+        %	INCLUDE THE TITLE PAGE
+        %----------------------------------------------------------------------------------------
+            \include{TitlePage/Title_Page} % Excuse me for including Title_Page inside front matter
+        
+        
+        %----------------------------------------------------------------------------------------
+        %	INCLUDE THE FRONT MATTER PAGES
+        %----------------------------------------------------------------------------------------
+            \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+            \pagestyle{plain} % Default to the plain heading style until the thesis style is called for the body content
+            
+            %----------------------------------------------------------------------------------------
+            %	DEDICATION
+            %----------------------------------------------------------------------------------------
+            
+            \dedicatory{Dedicated to my ... \ldots
+            % \begin{flushright} \small {\authorname} \end{flushright} % If you wish to include your name
+            }
+            
+            %----------------------------------------------------------------------------------------
+            %	FRONT MATTERS - ALL SEPARATELY AS INCLUDE CANNOT BE NESTED
+            %----------------------------------------------------------------------------------------
+            
+            \include{FrontMatter/Copyright}
+            \include{FrontMatter/Quotation}
+            \include{FrontMatter/Acceptance}
+            \include{FrontMatter/Motivation}
+            \include{FrontMatter/Abstract}
+            \include{FrontMatter/Acknowledgement}
+            \include{FrontMatter/ToC_and_Lists}
+            \include{FrontMatter/Abbreviations}
+            \include{FrontMatter/Physical_Constants}
+            \include{FrontMatter/Symbols}
+        
+        %----------------------------------------------------------------------------------------
+        %	THESIS CONTENT - CHAPTERS
+        %----------------------------------------------------------------------------------------
+        
+            \mainmatter % Begin numeric (1,2,3...) page numbering
+            \pagestyle{thesis} % Return the page headers back to the "thesis" style
+            % include all applicable chapters accordingly
+            
+            \include{Chapters/Chapter1_Introduction}
+            \include{Chapters/Chapter2_LitReview}
+            \include{Chapters/Chapter3_RelMain}
+            \include{Chapters/Chapter4_Method}
+            \include{Chapters/Chapter5_SysModeling}
+            \include{Chapters/Chapter6_ResandDis} 
+            \include{Chapters/Chapter7_Conclusion} 
+        %----------------------------------------------------------------------------------------
+        %	BIBLIOGRAPHY
+        %----------------------------------------------------------------------------------------
+        
+            \renewcommand{\bibname}{References}
+            \addcontentsline{toc}{chapter}{REFERENCES}
+            
+            \Urlmuskip=0mu plus 1mu\relax
+            \bibliographystyle{IEEEtran} %for IEEE style
+            %\bibliographystyle{elsarticle-num}
+            \bibliography{BibRef}
+        
+        
+        %-----------------Research Team/Authors ------------------------------------------
+        %----------------------------------------------------------------------------------------
+        %	THESIS CONTENT - APPENDICES
+        %----------------------------------------------------------------------------------------
+        
+            \appendix % Cue to tell LaTeX that the following "chapters" are Appendices
+            \phantomsection
+            \addcontentsline{toc}{chapter}{APPENDICES}
+            \label{Appendix} 
+            \renewcommand {\cftchappresnum}{Appendix}
+            \renewcommand{\thefigure}{A.\arabic{figure}} % for figures
+            \renewcommand{\thetable}{A.\arabic{table}} % for table
+            
+            % %include all applicable appendices..
+            \include{Appendices/AppendixA}
+            \include{Appendices/AppendixB}
+            \include{Appendices/AppendixC}
+            %\include{Appendices/AppendixD}  % Questionnaire survey
+            %\include{Appendices/ResearchVisit}
+            
+    \end{document}  
