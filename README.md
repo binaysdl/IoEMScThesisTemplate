@@ -1,3 +1,4 @@
+<meta name="google-site-verification" content="V3BPDDBzetN69nYQzowBdhVULscl3LDFWOSxSOzdeOc" />
 # IoEMScThesisTemplate
 
 IoEMScThesisTemplate is developed with modification to the MasterDoctoralThesis template available at [Latextemplates.com](http://www.latextemplates.com/template/masters-doctoral-thesis). It is adopted to adhere to the unorthodox requirement of MSc Thesis formatting in Institute of Engineering, Tribhuvan University.
